@@ -13,12 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class PathService {
     private LineService lineService;
     private StationService stationService;
-    private PathFinder pathFinder;
 
     public PathService(LineService lineService, StationService stationService) {
         this.lineService = lineService;
         this.stationService = stationService;
-        this.pathFinder = pathFinder = new Dijkstra();
     }
 
     public PathResponse searchShortestPath(Long sourceId, Long targetId) {
@@ -28,6 +26,7 @@ public class PathService {
     }
 
     private PathResponse searchPath(Station source, Station target) {
+        final PathFinder pathFinder = new Dijkstra();
         pathFinder.initialize(lineService.findAllLines());
         return pathFinder.searchShortestPath(source, target);
     }
