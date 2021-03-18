@@ -1,6 +1,7 @@
 package nextstep.subway.path.application;
 
 import nextstep.subway.line.application.LineService;
+import nextstep.subway.path.adaptor.Dijkstra;
 import nextstep.subway.path.dto.PathResponse;
 import nextstep.subway.station.application.StationService;
 import nextstep.subway.station.domain.Station;
@@ -14,10 +15,10 @@ public class PathService {
     private StationService stationService;
     private PathFinder pathFinder;
 
-    public PathService(LineService lineService, StationService stationService, PathFinder pathFinder) {
+    public PathService(LineService lineService, StationService stationService) {
         this.lineService = lineService;
         this.stationService = stationService;
-        this.pathFinder = pathFinder;
+        this.pathFinder = pathFinder = new Dijkstra();
     }
 
     public PathResponse searchShortestPath(Long sourceId, Long targetId) {

@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
 public class Dijkstra implements PathFinder {
 
     private WeightedMultigraph< Station, DefaultWeightedEdge > graph;
@@ -54,7 +53,7 @@ public class Dijkstra implements PathFinder {
         stations.stream().forEach(station -> graph.addVertex(station));
     }
 
-    public List< PathStationResponse > createStationResponse(List<Station> path) {
+    private List< PathStationResponse > createStationResponse(List<Station> path) {
         return path.stream()
                 .map(it -> PathStationResponse.of(it))
                 .collect(Collectors.toList());

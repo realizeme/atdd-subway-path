@@ -96,7 +96,6 @@ public class SectionsTest {
 
         // then
         List<Station> resultStations = 신분당선_구간집합.getStations();
-        assertThat(resultStations).isNotNull();
         assertThat(resultStations.get(resultStations.size()-1)).isEqualTo(정자역);
     }
 
